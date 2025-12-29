@@ -16,5 +16,11 @@ python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
+```
 
+## Update (Windows)
+```
+cd focus-lock
+git pull
+```
 
