@@ -7,8 +7,6 @@ A terminal-based Pomodoro timer that enforces focus by blocking selected apps du
 - Git
 
 ## Setup (Windows)
-```
-```
 ```bash
 git clone https://github.com/AshyCodes2710/focus-lock.git
 cd focus-lock
