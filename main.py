@@ -1,6 +1,6 @@
 from timer import PomodoroTimer
 
-# Somebody's bound to try installing ts without python on em.
+# Somebody's bound to try installing ts without python installed.
 import sys
 
 if sys.version_info < (3, 10):
@@ -8,10 +8,6 @@ if sys.version_info < (3, 10):
     input("Press Enter to exit.")
     sys.exit(1)
 
-# I have come to the startling realisation that this code accepts 0.5 as 30 seconds. No one remembers seconds as fractions of a minutes
-# okay I do but I'm just built different. Maybe even built incorrectly.
-#
-# This will take an input in the form of HH:MM:SS and then return the total seconds in there.
 def parse_time_hms(time_str: str) -> int:
     """
     Parse time in HH:MM:SS format into total seconds.
@@ -38,22 +34,21 @@ def parse_time_hms(time_str: str) -> int:
 
 if __name__ == "__main__":
     timer = PomodoroTimer()
-
-    #work = int(input("Work minutes:\t"))
-    #brk = int(input("Break minutes:\t "))
-        # had a little bug with the timer input: couldn't add time in seconds. Now we can run a timer in seconds.
-    work = float(input("Work minutes:\t"))
-    if work <= 0:
-        raise ValueError("Work time must be greater than 0")
-
-    brk = float(input("Break minutes:\t"))
-    if brk <= 0:
-    raise ValueError("Break time must be greater than 0")
+    try:
+        work_str = input("Work Time {HH:MM:SS}:\t")
+        brk_str = input("Break Time {HH:MM:SS}:\t")
+ 
+        work_seconds = parse_time_hms(work_str)
+        break_seconds = parse_time_hms(brk_str)
+ 
+        timer.configure_seconds(work_seconds, break_seconds)
+    except ValueError as e:
+        print(e)
+        sys.exit(1)
 
     choice = input("Enable App-Block? (y/n):\t")
     if choice.lower() == 'n':
         timer.blocker.disable()
 
-    timer.configure(work,brk)
     timer.start_work()
     timer.run()

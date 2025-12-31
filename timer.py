@@ -15,6 +15,15 @@ class PomodoroTimer:
         self.work_seconds = int(60*work_minutes)
         self.break_seconds = int(60*break_minutes)
 
+    def configure_seconds(self, work_seconds: int, break_seconds: int):
+        if work_seconds <= 0:
+            raise ValueError("Work time must be more than zero.")
+        if break_seconds < 0: 
+            raise ValueError("Break time can't be negative.")
+
+        self.work_seconds = work_seconds
+        self.break_seconds = break_seconds
+
     def start_work(self):
         if self.work_seconds <= 0:
             raise ValueError("Hmm... That didn't work. Try setting up \"work duration\"?")
