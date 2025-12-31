@@ -31,19 +31,19 @@ class PomodoroTimer:
         self.state = PomodoroState.WORK
         self.remaining = self.work_seconds
         self.running = True
-        print("[STATE] Work started~!!")
+        print("\n[STATE] Work started~!!")
 
     def start_break(self):
         self.state = PomodoroState.BREAK
         self.remaining =self.break_seconds
         self.running = True
-        print("[STATE] Break started~!!")
+        print("\n[STATE] Break started~!!")
 
     def stop(self):
         self.running = False
         self.state = PomodoroState.IDLE
         self.remaining = 0
-        print("[STATE] Stopped :<")
+        print("\n[STATE] Stopped :>")
 
     def tick(self):
         if not self.running:
